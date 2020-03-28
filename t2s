@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import sys
+
+def countTabs(line):
+    n = 0
+    for ch in line:
+        if ch == '\t':
+            n += 1
+        else:
+            break
+
+    return n
+
+def countSpaces(line):
+    n = 0
+    for ch in line:
+        if ch == ' ':
+            n += 1
+        else:
+            break
+
+    return n
+
+spacesPerTab = 4
+for line in sys.stdin:
+    if line == '\n':
+        sys.stdout.write(line)
+    else:
+        numTabs = countTabs(line)
+        numSpaces = countSpaces(line)
+        if numSpaces > 0:
+            line = line.rstrip() + '\n'
+        else:
+            line = line.lstrip().rstrip()
+            line = ' '*(numTabs * spacesPerTab) + line + '\n'
+        sys.stdout.write(line)
+
+
